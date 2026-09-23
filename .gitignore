@@ -1,0 +1,88 @@
+# WordPress – Kultur im Kaff
+# Versioniert werden nur: Themes (picostrap5 + Child), eigene Plugins (Submodules), mu-plugins.
+# Core, Konfiguration, Uploads, Fremd-Plugins und Backups bleiben draussen.
+
+# ---------------------------------------------------------------
+# WordPress Core
+# ---------------------------------------------------------------
+/index.php
+/license.txt
+/readme.html
+/wp-*.php
+/xmlrpc.php
+/wp-admin/
+/wp-includes/
+
+# ---------------------------------------------------------------
+# Konfiguration / Server
+# ---------------------------------------------------------------
+wp-config.php
+/.htaccess
+/.user.ini
+/php.ini
+/cgi-bin/
+/.well-known/
+/.quarantine/
+/.tmb/
+
+# ---------------------------------------------------------------
+# wp-content: alles ignorieren, dann gezielt freigeben
+# ---------------------------------------------------------------
+/wp-content/*
+!/wp-content/index.php
+
+# Themes
+!/wp-content/themes/
+/wp-content/themes/*
+!/wp-content/themes/index.php
+!/wp-content/themes/picostrap5/
+!/wp-content/themes/picostrap5-child-base/
+
+# Plugins: nur eigene (als Git-Submodules eingebunden)
+!/wp-content/plugins/
+/wp-content/plugins/*
+!/wp-content/plugins/index.php
+!/wp-content/plugins/advanced-custom-database
+
+# Must-use Plugins
+!/wp-content/mu-plugins/
+
+# ---------------------------------------------------------------
+# Theme-spezifisch
+# ---------------------------------------------------------------
+# Kompiliertes CSS (wird vom picostrap-SCSS-Compiler erzeugt)
+**/css-output/
+/wp-content/themes/picostrap5-child-base/_backups/
+/wp-content/themes/picostrap5-child-base/import/logs/
+/wp-content/themes/picostrap5-child-base/db-custom/privat/
+/wp-content/themes/picostrap5-child-base/site-design-source/*.pdf
+
+# ---------------------------------------------------------------
+# Lokale Hilfs-/Importskripte, DB-Dumps, Sonstiges
+# ---------------------------------------------------------------
+/debug-*.php
+/import-*.php
+/sql/
+/database/
+*.sql
+*.sql.gz
+
+# ---------------------------------------------------------------
+# Build / Abhängigkeiten
+# ---------------------------------------------------------------
+node_modules/
+# Nur Composer-vendor im Root – NICHT sass/bootstrap5/vendor der Themes!
+/vendor/
+.sass-cache/
+
+# ---------------------------------------------------------------
+# Logs, Editor, Betriebssystem
+# ---------------------------------------------------------------
+*.log
+/.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+desktop.ini

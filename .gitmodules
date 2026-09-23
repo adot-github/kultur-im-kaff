@@ -1,0 +1,3 @@
+[submodule "wp-content/plugins/advanced-custom-database"]
+	path = wp-content/plugins/advanced-custom-database
+	url = https://github.com/adot-github/wp-adot-sys-components.git

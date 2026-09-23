@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formular · Kulturkreis Küttigen-Rombach</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400..800;1,14..32,400..700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/theme.css" rel="stylesheet">
+</head>
+<body>
+<nav class="kk-nav">
+  <div class="container-xl d-flex flex-wrap align-items-center justify-content-between gap-2 py-2">
+    <a class="kk-brand" href="index.html">Kulturkreis Küttigen-Rombach</a>
+    <div class="kk-navlinks">
+      <a class="kk-navlink" href="index.html">Programm</a>
+      <a class="kk-navlink" href="spielorte.html">Spielorte</a>
+      <a class="kk-navlink" href="vorstand.html">Vorstand</a>
+      <a class="kk-navlink" href="vorstand-verspielt.html">Vorstand ✳</a>
+      <a class="kk-navlink" href="archiv.html">Archiv</a>
+      <a class="kk-navlink" href="video.html">Video</a>
+      <a class="kk-navlink active" href="formular.html">Formular</a>
+      <a class="kk-navlink" href="seite.html">Seite</a>
+      <a class="kk-btn kk-btn-yellow kk-btn-sm ms-2" href="https://www.kultur-im-kaff.ch" target="_blank" rel="noopener">Vorverkauf</a>
+    </div>
+  </div>
+</nav>
+
+<main class="container-xl kk-pagehead pb-5">
+  <div class="kk-eyebrow">Anmeldung</div>
+  <h1 class="kk-h1">Mitmachen.</h1>
+  <p class="kk-lead mb-5">Mitgliedschaft, Helfereinsatz oder Newsletter — ein Formular für alles. Alle Felder mit * sind Pflicht.</p>
+
+  <div class="kk-section pt-0">
+    <div class="row g-4 align-items-stretch">
+      <div class="col-12 col-lg-7">
+        <div class="kk-panel">
+          <h2 class="kk-h2">Lust, mitzumachen?</h2>
+          <p class="kk-text mt-3 mb-4">Wir suchen laufend Menschen, die Lust auf Kultur im Dorf haben: an der Bar, beim Bühnenbau, im Vorstand. Melde dich einfach — Erfahrung ist keine Bedingung.</p>
+          <a class="kk-btn" href="formular.html">Schreib uns <span class="kk-tri"></span></a>
+        </div>
+      </div>
+      <div class="col-12 col-lg-5">
+        <div class="kk-panel kk-panel-white">
+          <div class="kk-label">Mitgliedschaft</div>
+          <div class="d-flex flex-wrap gap-3 mt-3">
+            <div class="kk-figure">Fr. 25.–<span>Einzelmitglied</span></div>
+            <div class="kk-figure">Fr. 40.–<span>Paare / Familien</span></div>
+          </div>
+          <p class="kk-text mt-3 mb-0">Clientis Bank Aareland, Kulturkreis<br>CH67 0657 5016 5211 7571 0</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <form class="kk-form row g-4">
+    <div class="col-12 col-md-6">
+      <div class="kk-field">
+        <input id="f-vorname" type="text">
+        <label for="f-vorname">Vorname *</label>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="kk-field">
+        <input id="f-nachname" type="text">
+        <label for="f-nachname">Nachname *</label>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="kk-field">
+        <input id="f-mail" type="email">
+        <label for="f-mail">E-Mail *</label>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="kk-field">
+        <input id="f-tel" type="tel">
+        <label for="f-tel">Telefon</label>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="kk-field always">
+        <input id="f-datum" type="date">
+        <label for="f-datum">Wunschdatum</label>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <div class="kk-field always">
+        <select id="f-art">
+          <option>Mitgliedschaft</option>
+          <option>Helfereinsatz</option>
+          <option>Newsletter</option>
+          <option>Saalmiete Spittel</option>
+          <option>Anderes</option>
+        </select>
+        <label for="f-art">Anliegen</label>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <div class="kk-fieldset-title">Mitgliedschaft</div>
+      <div class="kk-checks">
+        <label class="kk-check"><input type="radio" name="mitglied" checked>Einzelmitglied · Fr. 25.–</label>
+        <label class="kk-check"><input type="radio" name="mitglied">Paare / Familien · Fr. 40.–</label>
+        <label class="kk-check"><input type="radio" name="mitglied">Noch keine Mitgliedschaft</label>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="kk-fieldset-title">Wo möchtest du mithelfen?</div>
+      <div class="kk-checks">
+        <label class="kk-check"><input type="checkbox">Bar &amp; Festwirtschaft</label>
+        <label class="kk-check"><input type="checkbox">Bühnenbau</label>
+        <label class="kk-check"><input type="checkbox">Kasse &amp; Abendkasse</label>
+        <label class="kk-check"><input type="checkbox">Technik (Licht &amp; Ton)</label>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <label class="kk-fieldset-title d-block" for="f-beitrag">Freiwilliger Gönnerbeitrag: <span data-range-label>Fr. 40.–</span></label>
+      <input class="kk-range" id="f-beitrag" type="range" min="0" max="200" step="10" value="40">
+    </div>
+    <div class="col-12 col-md-6">
+      <label class="kk-fieldset-title d-block" for="f-file">Beilage (z. B. Foto)</label>
+      <div class="kk-field kk-field-file"><input id="f-file" type="file"></div>
+    </div>
+
+    <div class="col-12">
+      <div class="kk-field">
+        <textarea id="f-text" rows="5"></textarea>
+        <label for="f-text">Nachricht</label>
+      </div>
+    </div>
+
+    <div class="col-12 kk-checks">
+      <label class="kk-check kk-check-top"><input type="checkbox" required>Ich akzeptiere die Statuten des Vereins *</label>
+      <label class="kk-check kk-check-top"><input type="checkbox">Newsletter abonnieren (ca. 6 Mails pro Jahr)</label>
+    </div>
+
+    <div class="col-12 d-flex flex-wrap align-items-center gap-3">
+      <button class="kk-btn kk-btn-lg" type="submit">Absenden</button>
+      <button class="kk-btn kk-btn-outline" type="reset">Zurücksetzen</button>
+      <span class="kk-success" data-form-success hidden>Danke! Wir melden uns.</span>
+    </div>
+  </form>
+</main>
+
+<div class="kk-overlay" data-overlay="video">
+  <div class="kk-overlay-inner">
+    <div class="kk-overlay-head">
+      <div>
+        <div class="kk-overlay-title" data-overlay-title></div>
+        <div class="kk-overlay-meta" data-overlay-meta></div>
+      </div>
+      <button class="kk-close" type="button" data-close aria-label="Schliessen">✕</button>
+    </div>
+    <div class="kk-player" data-player data-duration="2:14">
+      <div class="kk-ph" data-ph>VIDEO Querformat 16:9</div>
+      <button class="kk-play" type="button" data-play aria-label="Abspielen"><span class="kk-glyph"></span></button>
+      <div class="kk-controls">
+        <div class="kk-track" data-seek><div class="kk-bar" data-bar></div></div>
+        <div class="kk-times"><span data-time>0:00 / 2:14</span><span data-fmt>Querformat 16:9</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="kk-overlay" data-overlay="image">
+  <div class="kk-overlay-inner">
+    <div class="kk-overlay-head">
+      <div>
+        <div class="kk-overlay-title" data-overlay-title></div>
+        <div class="kk-overlay-meta" data-overlay-meta></div>
+      </div>
+      <button class="kk-close" type="button" data-close aria-label="Schliessen">✕</button>
+    </div>
+    <img class="kk-overlay-img" alt="" data-overlay-image>
+  </div>
+</div>
+<footer class="kk-footer">
+  <div class="container-xl py-5">
+    <div class="row g-4 align-items-start">
+      <div class="col-12 col-lg-5">
+        <div class="kk-footer-brand">Kulturkreis<br>Küttigen-Rombach</div>
+        <p class="kk-text mt-3 mb-0">Verein für die Organisation und Durchführung kultureller Veranstaltungen in Küttigen-Rombach und Umgebung. Seit 1877.</p>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="kk-label">Seiten</div>
+        <div class="kk-footer-links mt-2">
+          <a href="index.html">Programm</a>
+          <a href="spielorte.html">Spielorte</a>
+          <a href="vorstand.html">Vorstand</a>
+          <a href="vorstand-verspielt.html">Vorstand ✳</a>
+          <a href="archiv.html">Archiv</a>
+          <a href="video.html">Video</a>
+          <a href="formular.html">Formular</a>
+          <a href="seite.html">Seite</a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-4">
+        <div class="kk-label">Kontakt</div>
+        <p class="kk-text mt-2 mb-2">Christine Kessi · Galgehübel 7, 5022 Rombach<br><a href="mailto:c.kessi@kultur-im-kaff.ch">c.kessi@kultur-im-kaff.ch</a></p>
+        <a class="kk-btn kk-btn-yellow kk-btn-sm mt-2" href="https://www.kultur-im-kaff.ch" target="_blank" rel="noopener">kultur-im-kaff.ch</a>
+        <div class="kk-caption mt-3">Fotos Spittel / Kirche: Helen Wehrli</div>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="assets/app.js"></script>
+</body>
+</html>
