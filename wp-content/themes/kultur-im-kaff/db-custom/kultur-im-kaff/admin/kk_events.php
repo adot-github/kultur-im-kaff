@@ -26,6 +26,21 @@ $root_config_id = $editor->add_table_config( [
             'title'      => 'Anlässe bearbeiten',
             'button_add' => 'Neuen Anlass hinzufügen',
         ],
+        // Filter im Bereich "Filter und Tools" (#acdb-filters-collapse)
+        'screen_options' => [
+            'show_by_season' => [
+                'label'    => 'Anzeigen',
+                'default'  => '',
+                'type'     => 'radio',
+                'callback' => function( $value ) {
+                    return $value == '1' ? 'ysn_current_season = 1' : '';
+                },
+                'choice'   => [
+                    [ 'label' => 'Alle',                'value' => '' ],
+                    [ 'label' => 'Aktuelles Programm',  'value' => 1 ],
+                ],
+            ],
+        ],
     ],
 
     'form' => [
@@ -49,6 +64,8 @@ $root_config_id = $editor->add_table_config( [
             'dtm_time_to'       => 'col-md-2',
             'str_date_extra'    => 'col-md-4',
             'tags'              => 'col-md-12',
+            'ysn_current_season' => 'col-md-3',
+            'ysn_anniversary'    => 'col-md-3',
 
             [ 'type' => 'tab', 'label' => 'Preise' ],
             'num_price_adults'   => 'col-md-3',
@@ -86,6 +103,26 @@ $root_config_id = $editor->add_table_config( [
         'str_artist_detail' => [
             'label'       => 'Künstler-Detail',
             'instructions' => 'Kurze Zusatzzeile, z. B. Rollenaufteilung oder Besetzung.',
+        ],
+
+        'ysn_current_season' => [
+            'label'    => 'Aktuelle Saison',
+            'sortable' => true,
+            'acf'      => [
+                'type'          => 'true_false',
+                'ui'            => true,
+                'default_value' => false,
+            ],
+        ],
+
+        'ysn_anniversary' => [
+            'label'    => 'Jubiläum',
+            'sortable' => true,
+            'acf'      => [
+                'type'          => 'true_false',
+                'ui'            => true,
+                'default_value' => false,
+            ],
         ],
 
         'fky_location' => [

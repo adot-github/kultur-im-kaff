@@ -22,6 +22,7 @@
 //LOAD LC CONFIG TO DEFINE FRAMEWORK
 require_once ("livecanvas/configuration.php");
 require_once get_stylesheet_directory() . '/inc/site-design-renderer.php';
+require_once get_stylesheet_directory() . '/inc/color-skins.php';
 
 // DE-ENQUEUE PARENT THEME BOOTSTRAP JS BUNDLE
 add_action( 'wp_print_scripts', function(){
@@ -58,6 +59,7 @@ add_action( 'wp_enqueue_scripts', function() {
 register_nav_menus( array(
     'primary' => __( 'Primary Menu', 'picostrap5' ),
     'footer' => __( 'Footer Menu', 'picostrap5' ),
+    'jubilaeum' => 'Jubiläum Menu',
 ) );
 // THEN USE SHORTCODE:  [lc_nav_menu theme_location="third" container_class="" container_id="" menu_class="navbar-nav"]
 

@@ -19,6 +19,7 @@ $events = $wpdb->get_results(
      FROM {$event_table} e
      LEFT JOIN {$loc_table} l ON l.id = e.fky_location
      WHERE e.dtm_date_from IS NOT NULL
+       AND ( e.ysn_current_season = 1 OR e.ysn_anniversary = 1 )
      ORDER BY e.dtm_date_from ASC, e.id ASC",
     ARRAY_A
 );

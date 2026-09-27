@@ -36,7 +36,7 @@ wp-config.php
 /wp-content/themes/*
 !/wp-content/themes/index.php
 !/wp-content/themes/picostrap5/
-!/wp-content/themes/picostrap5-child-base/
+!/wp-content/themes/kultur-im-kaff/
 
 # Plugins: nur eigene (als Git-Submodules eingebunden)
 !/wp-content/plugins/
@@ -52,10 +52,10 @@ wp-config.php
 # ---------------------------------------------------------------
 # Kompiliertes CSS (wird vom picostrap-SCSS-Compiler erzeugt)
 **/css-output/
-/wp-content/themes/picostrap5-child-base/_backups/
-/wp-content/themes/picostrap5-child-base/import/logs/
-/wp-content/themes/picostrap5-child-base/db-custom/privat/
-/wp-content/themes/picostrap5-child-base/site-design-source/*.pdf
+/wp-content/themes/kultur-im-kaff/_backups/
+/wp-content/themes/kultur-im-kaff/import/logs/
+/wp-content/themes/kultur-im-kaff/db-custom/privat/
+/wp-content/themes/kultur-im-kaff/site-design-source/*.pdf
 
 # ---------------------------------------------------------------
 # Lokale Hilfs-/Importskripte, DB-Dumps, Sonstiges
@@ -86,3 +86,7 @@ node_modules/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Lokale Design-Archive (PSD/ZIP) und Windows-Verknuepfungen - nicht versionieren
+/kultur-im-kaff-assets/
+*.lnk

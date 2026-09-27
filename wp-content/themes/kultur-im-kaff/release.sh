@@ -4,8 +4,8 @@
 echo "Releasing picostrap5"
 
 # Define a subfolder name and zip file name
-SUBFOLDER="picostrap5-child-base"
-ZIP_NAME="picostrap5-child-base.zip"
+SUBFOLDER="kultur-im-kaff"
+ZIP_NAME="kultur-im-kaff.zip"
 
 # Create the subfolder if it doesn't exist
 mkdir -p "$SUBFOLDER"
