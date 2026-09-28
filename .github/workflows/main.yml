@@ -2,22 +2,24 @@ name: Update kultur-im-kaff.xweb.ch
 on:
   push:
     branches:
-      - 'master'
+      - main
   workflow_dispatch:
 jobs:
-  build:
-    name: Build
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
-    - name: executing remote ssh commands using password
-      uses: appleboy/ssh-action@v1.0.3
-      with:
-        host: ${{ secrets.HOST_PROD }}
-        username: ${{ secrets.USERNAME_PROD }}
-        password: ${{ secrets.PASSWORD_PROD }}
-        port: ${{ secrets.PORT }}
-        script:
-          cd sites/kultur-im-kaff.xweb.ch &&
-          git fetch --all &&
-          git reset --hard origin/master && 
-          git submodule update --init --recursive
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ secrets.HOST_PROD }}
+          username: ${{ secrets.USERNAME_PROD }}
+          password: ${{ secrets.PASSWORD_PROD }}
+          port: ${{ secrets.PORT }}
+          script_stop: true
+          script: |
+            cd ~/sites/kultur-im-kaff.xweb.ch
+            git fetch --all
+            git reset --hard origin/main
+            git submodule sync --recursive
+            git submodule update --init --recursive
