@@ -13,8 +13,8 @@ jobs:
       uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ secrets.HOST_PROD }}
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
+        username: ${{ secrets.USERNAME_PROD }}
+        password: ${{ secrets.PASSWORD_PROD }}
         port: ${{ secrets.PORT }}
         script:
           cd sites/kultur-im-kaff.xweb.ch &&
