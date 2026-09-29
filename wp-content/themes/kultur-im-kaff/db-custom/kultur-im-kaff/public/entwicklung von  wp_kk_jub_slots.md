@@ -68,3 +68,5 @@ Anzeige: Titel , ein roter Punkt vor dem Text
 
 Mach zudem im Feld des Events einen Mini Button mit Text "Buchen".
 Er funktioniert gleich wie wenn man auf das Event klickt.
+
+Gern den Titel wie vorher komplett zeigen und den Button auf einer eigenen Zeile.
