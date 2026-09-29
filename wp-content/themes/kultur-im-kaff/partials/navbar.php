@@ -26,10 +26,14 @@
         </div>
     </div>
 </nav>
-<?php // Mobile: "Nach oben"-Button, erscheint sobald die Navigation aus dem Bild gescrollt ist ?>
-<button type="button" class="kk-totop d-lg-none" aria-label="Nach oben" hidden>
-    <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M12 5l-7 7m7-7l7 7M12 5v14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-</button>
+<?php // "Nach oben"-Button, erscheint sobald die Navigation aus dem Bild gescrollt ist; Desktop: bündig am rechten Containerrand ?>
+<div class="kk-totop-wrap">
+    <div class="container-xl">
+        <button type="button" class="kk-totop" aria-label="Nach oben" hidden>
+            <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M12 5l-7 7m7-7l7 7M12 5v14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+    </div>
+</div>
 <script>
 (function () {
     var nav = document.querySelector('.kk-nav');

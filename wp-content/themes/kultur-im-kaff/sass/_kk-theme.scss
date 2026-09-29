@@ -237,8 +237,12 @@ h1,h2,h3,h4,h5,h6,p,li,dd,blockquote,figcaption,
 .kk-nav-toggle:hover{background:var(--kk-hover-tint)}
 .kk-nav-toggle:focus{box-shadow:none}
 
-/* ---------- "Nach oben"-Button (Mobile, partials/navbar.php) ---------- */
-.kk-totop{position:fixed;right:16px;bottom:16px;z-index:1040;width:52px;height:52px;padding:0;border-radius:50%;
+/* ---------- "Nach oben"-Button (partials/navbar.php) ---------- */
+/* Fixierter Wrapper mit .container-xl: Button sitzt am rechten Containerrand */
+.kk-totop-wrap{position:fixed;left:0;right:0;bottom:16px;z-index:1040;pointer-events:none}
+.kk-totop-wrap > .container-xl{display:flex;justify-content:flex-end}
+@media (max-width:991.98px){ .kk-totop-wrap > .container-xl{padding-right:16px} }
+.kk-totop{pointer-events:auto;width:52px;height:52px;padding:0;border-radius:50%;
   display:inline-flex;align-items:center;justify-content:center;cursor:pointer;
   background:var(--kk-accent-color);color:var(--kk-text-on-accent);border:2px solid var(--kk-text-on-accent);
   box-shadow:0 6px 18px var(--kk-shadow-badge);
