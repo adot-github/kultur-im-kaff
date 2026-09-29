@@ -1,0 +1,26 @@
+name: Update kultur-im-kaff.xweb.ch
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          debug: true
+          host: ${{ secrets.HOST_PROD }}
+          username: ${{ secrets.USERNAME_PROD }}
+          password: ${{ secrets.PASSWORD_PROD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            set -e
+            cd ~/sites/kultur-im-kaff.xweb.ch
+            git fetch --all
+            git reset --hard origin/main
+            git submodule sync --recursive
+            git submodule update --init --recursive
