@@ -329,7 +329,7 @@ document.addEventListener('DOMContentLoaded', function () {
     bookedBox.hidden = !s.kkBooked;
     bookedBox.textContent = s.kkState === 2
       ? 'Dieser Slot ist bereits gebucht: ' + s.title + '.'
-      : 'Dieser Slot ist bereits reserviert.';
+      : 'Dieser Slot ist bereits reserviert, aber noch nicht final bestätigt.';
     modal.show();
   }
 
