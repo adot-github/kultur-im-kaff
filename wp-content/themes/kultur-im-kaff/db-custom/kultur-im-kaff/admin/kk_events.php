@@ -96,13 +96,15 @@ $root_config_id = $editor->add_table_config( [
         ],
 
         'str_artist' => [
-            'label'      => 'Künstler / Act',
+            'label'      => 'Künstler:in/Act',
             'searchable' => true,
         ],
 
         'str_artist_detail' => [
-            'label'       => 'Künstler-Detail',
-            'instructions' => 'Kurze Zusatzzeile, z. B. Rollenaufteilung oder Besetzung.',
+            'label' => 'Künstler:in-Detail',
+            'acf'   => [
+                'instructions' => 'Kurze Zusatzzeile, z. B. Rollenaufteilung oder Besetzung.',
+            ],
         ],
 
         'ysn_current_season' => [
@@ -152,10 +154,10 @@ $root_config_id = $editor->add_table_config( [
         ],
 
         'dtm_date_to' => [
-            'label'        => 'Datum bis',
-            'instructions' => 'Nur bei mehrtägigen Anlässen (z. B. Ausstellungen) ausfüllen.',
-            'acf'          => [
-                'type' => 'date_picker',
+            'label' => 'Datum bis',
+            'acf'   => [
+                'type'         => 'date_picker',
+                'instructions' => 'Nur bei mehrtägigen Anlässen (z. B. Ausstellungen) ausfüllen.',
             ],
         ],
 
@@ -174,8 +176,10 @@ $root_config_id = $editor->add_table_config( [
         ],
 
         'str_date_extra' => [
-            'label'        => 'Zusatzinfo zu Datum/Ort',
-            'instructions' => 'Erscheint klein unter Datum/Zeit/Ort, z. B. "Kulturbar ab 19.00 Uhr" oder "Kein Vorverkauf".',
+            'label' => 'Zusatzinfo zu Datum/Ort',
+            'acf'   => [
+                'instructions' => 'Erscheint klein unter Datum/Zeit/Ort, z. B. "Kulturbar ab 19.00 Uhr" oder "Kein Vorverkauf".',
+            ],
         ],
 
         'tags' => [
@@ -230,8 +234,10 @@ $root_config_id = $editor->add_table_config( [
         ],
 
         'str_price_remark' => [
-            'label'        => 'Preis-Bemerkung',
-            'instructions' => 'Wird zusätzlich zu den Preisen angezeigt, z. B. "Kollekte". Sind alle drei Preise leer/0, ersetzt diese Bemerkung die Preiszeile.',
+            'label' => 'Preis-Bemerkung',
+            'acf'   => [
+                'instructions' => 'Wird zusätzlich zu den Preisen angezeigt, z. B. "Kollekte". Sind alle drei Preise leer/0, ersetzt diese Bemerkung die Preiszeile.',
+            ],
         ],
 
         'str_image' => [
@@ -246,22 +252,25 @@ $root_config_id = $editor->add_table_config( [
         ],
 
         'str_video' => [
-            'label'        => 'Video',
-            'instructions' => 'YouTube-Link oder volle URL zu einer Videodatei unter /events/.',
+            'label' => 'Video',
+            'acf'   => [
+                'instructions' => 'YouTube-Link oder volle URL zu einer Videodatei unter /events/.',
+            ],
         ],
 
         'str_hyperlink' => [
-            'label' => 'Link "Mehr Infos"',
+            'label' => 'Link «Mehr Infos»',
             'acf'   => [
-                'type' => 'url',
+                'type'         => 'acdb_link',
+                'instructions' => 'Seite der Website suchen oder beliebige URL eingeben.',
             ],
         ],
 
         'str_hyperlink_sales' => [
-            'label'        => 'Vorverkauf-Link',
-            'instructions' => 'Wird im Archiv nie angezeigt, auch wenn hier ein Link gesetzt ist.',
-            'acf'          => [
-                'type' => 'url',
+            'label' => 'Vorverkauf-Link',
+            'acf'   => [
+                'type'         => 'url',
+                'instructions' => 'Wird im Archiv nie angezeigt, auch wenn hier ein Link gesetzt ist.',
             ],
         ],
     ],

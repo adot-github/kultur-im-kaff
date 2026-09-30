@@ -84,15 +84,17 @@ $editor->add_table_config( [
         ],
 
         'str_travel' => [
-            'label'        => 'Anreise',
-            'instructions' => 'Kurzer Hinweistext, z. B. Bus-/Parkplatz-Info.',
+            'label' => 'Anreise',
+            'acf'   => [
+                'instructions' => 'Kurzer Hinweistext, z. B. Bus-/Parkplatz-Info.',
+            ],
         ],
 
         'str_google' => [
-            'label'        => 'Google-Maps-Link',
-            'instructions' => 'Bitte die vollständige URL aus der Browser-Adresszeile einfügen (mit Koordinaten, z. B. "@47.41...,8.04..."), nicht den kurzen "Teilen"-Link – nur so kann der Kartenausschnitt auf der Spielorte-Seite angezeigt werden.',
-            'acf'          => [
-                'type' => 'url',
+            'label' => 'Google-Maps-Link',
+            'acf'   => [
+                'type'         => 'url',
+                'instructions' => 'Bitte die vollständige URL aus der Browser-Adresszeile einfügen (mit Koordinaten, z. B. "@47.41...,8.04..."), nicht den kurzen "Teilen"-Link – nur so kann der Kartenausschnitt auf der Spielorte-Seite angezeigt werden.',
             ],
         ],
 

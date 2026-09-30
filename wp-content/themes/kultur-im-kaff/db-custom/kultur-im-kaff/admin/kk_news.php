@@ -67,12 +67,12 @@ $editor->add_table_config( [
         ],
 
         'mem_lead' => [
-            'label'        => 'Leadtext',
-            'searchable'   => true,
-            'instructions' => 'Kurzer Anrisstext, der in der Übersicht angezeigt wird.',
-            'acf'          => [
-                'type' => 'textarea',
-                'rows' => 4,
+            'label'      => 'Leadtext',
+            'searchable' => true,
+            'acf'        => [
+                'type'         => 'textarea',
+                'rows'         => 4,
+                'instructions' => 'Kurzer Anrisstext, der in der Übersicht angezeigt wird.',
             ],
         ],
 
@@ -85,22 +85,22 @@ $editor->add_table_config( [
         ],
 
         'ysn_online' => [
-            'label'        => 'Online',
-            'sortable'     => true,
-            'instructions' => 'Nur wenn aktiviert, wird die Meldung öffentlich angezeigt.',
-            'acf'          => [
+            'label'    => 'Online',
+            'sortable' => true,
+            'acf'      => [
                 'type'          => 'true_false',
                 'ui'            => true,
                 'default_value' => true,
+                'instructions'  => 'Nur wenn aktiviert, wird die Meldung öffentlich angezeigt.',
             ],
         ],
 
         'int_sort_order' => [
-            'label'        => 'Sortierung',
-            'sortable'     => true,
-            'instructions' => 'Kleinere Zahl erscheint weiter oben. Kann auch per Drag & Drop in der Listenansicht (links) sortiert werden.',
-            'acf'          => [
-                'type' => 'number',
+            'label'    => 'Sortierung',
+            'sortable' => true,
+            'acf'      => [
+                'type'         => 'number',
+                'instructions' => 'Kann auch per Drag & Drop in der Listenansicht (links) sortiert werden.',
             ],
         ],
 
@@ -160,15 +160,17 @@ $editor->add_table_config( [
         ],
 
         'str_video' => [
-            'label'        => 'Video',
-            'instructions' => 'YouTube-Link oder volle URL zu einer Videodatei unter /news/.',
+            'label' => 'Video',
+            'acf'   => [
+                'instructions' => 'YouTube-Link oder volle URL zu einer Videodatei',
+            ],
         ],
 
         'str_hyperlink' => [
-            'label'        => 'Link "Mehr erfahren"',
-            'instructions' => 'Optional: externer oder interner Link für einen "Mehr erfahren"-Button.',
-            'acf'          => [
-                'type' => 'text',
+            'label' => 'Link "Mehr erfahren"',
+            'acf'   => [
+                'type'         => 'acdb_link',
+                'instructions' => 'Externer oder interner Link',
             ],
         ],
     ],
