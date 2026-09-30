@@ -53,6 +53,8 @@ wp-config.php
 # Kompiliertes CSS (wird vom picostrap-SCSS-Compiler erzeugt)
 **/css-output/
 /wp-content/themes/kultur-im-kaff/_backups/
+# Sicherungen des Admin Builders (Versionen stehen in der Git-History)
+/wp-content/themes/kultur-im-kaff/db-custom/*/admin/_backup/
 /wp-content/themes/kultur-im-kaff/import/logs/
 /wp-content/themes/kultur-im-kaff/db-custom/privat/
 /wp-content/themes/kultur-im-kaff/site-design-source/*.pdf

@@ -15,4 +15,9 @@
     add_action( 'admin_head', function () {
         echo '<style>#adminmenu #toplevel_page_acdb_kk_events div.wp-menu-image img{padding-top:3px;}</style>';
     } );
+    
+    require_once __DIR__ . '/kk_jub_slots.php';
+    require_once __DIR__ . '/kk_jub_slot_types.php';
+    require_once __DIR__ . '/kk_persons.php';
+    require_once __DIR__ . '/kk_sponsoren.php';
 })();

@@ -1,10 +1,7 @@
 <?php
 /*
- * Tabelle wp_kk_event_tags – Gerüst vom Admin Builder, Einstellungen von Hand.
+ * Tabelle wp_kk_jub_slot_types – erstellt mit dem Admin Builder am 30.09.2026.
  * Wird aus admin/index.php eingebunden ($editor kommt von dort).
- * Verknüpfung mit Anlässen läuft über die Kreuztabelle wp_kk_event_to_tags
- * (siehe Feld "tags" in kk_events.php) – hier nur Verwaltung der Tag-Namen selbst
- * (z. B. Tippfehler korrigieren, ungenutzte Tags aufräumen).
  * Leere Parameter sind wirkungslos und können gelöscht werden; auskommentierte Parameter
  * wirken schon durch ihr Vorhandensein und sind deshalb nur als Vorlage aufgeführt.
  */
@@ -13,32 +10,31 @@ if (!isset($editor)) {
 }
 
 // Feldbeschriftungen aus wp_acdb_database_fields (Fallback: Text nach ??)
-$labels = acdb_field_labels('kk_event_tags');
+$labels = acdb_field_labels('kk_jub_slot_types');
 
 $editor->add_table_config([
-    'table' => 'kk_event_tags',
-    // 'id'   => 'acdb_kk_event_tags', // Standard: acdb_<tabelle>
-    'skin' => 'iframe',           // Ansicht erzwingen: 'iframe' = Liste links, Formular rechts
+    'table' => 'kk_jub_slot_types',
+    // 'id'   => 'acdb_kk_jub_slot_types', // Standard: acdb_<tabelle>
+    // 'skin' => 'iframe',        // Ansicht erzwingen: 'iframe' = Liste links, Formular rechts
     // 'sql'  => [
     //     'table'         => '',  // andere Tabelle/View für die Liste
     //     'select_fields' => [],  // zusätzliche SELECT-Ausdrücke
     // ],
     'menu' => [
         'menu_parent' => 'acdb_kk_events', // Config-ID des Hauptmenüs
-        'page_title'  => '– Tags',
-        'menu_title'  => '– Tags',
-        'icon'        => 'dashicons-tag',
-        'position'    => 27,
+        'page_title'  => '– Slot Types',
+        'menu_title'  => '– Slot Types',
+        'position'    => 40,
         'capacity'    => 'edit_others_posts',
     ],
     'list' => [
         'labels' => [
-            'title'      => 'Tags bearbeiten',
-            'button_add' => 'Neuen Tag hinzufügen',
+            'title'      => 'Jub Slot Types',
+            'button_add' => 'Neuer Datensatz',
         ],
-        'fields'                => ['str_tag', 'id'], // Spalten der Liste
-        'fields_iframe'         => ['str_tag', 'id'], // Anzeige in der Liste links (geteilte Ansicht)
-        'orderby_default'       => 'str_tag',
+        'fields'                => ['str_slot_type_name'], // Spalten der Liste
+        'fields_iframe'         => ['str_slot_type_name'], // Anzeige in der Liste links (geteilte Ansicht)
+        'orderby_default'       => 'str_slot_type_name',
         'order_default'         => 'asc',
         'condition'             => '', // zusätzliche SQL-Bedingung, z. B. "ysn_active = 1"
         'language_filter_field' => '', // Polylang: nur Datensätze der aktuellen Sprache
@@ -61,16 +57,17 @@ $editor->add_table_config([
     ],
     'form' => [
         'labels' => [
-            'title_add'     => 'Neuen Tag hinzufügen',
-            'title_edit'    => 'Tag bearbeiten',
-            'button_add'    => 'Tag speichern',
-            'button_edit'   => 'Tag speichern',
-            'button_saveas' => 'Als neuen Tag speichern',
+            'title_add'     => 'Neuer Datensatz',
+            'title_edit'    => 'Jub Slot Types bearbeiten',
+            'button_add'    => 'Speichern',
+            'button_edit'   => 'Speichern',
+            'button_saveas' => 'Als neuen Datensatz speichern',
         ],
         'fields_analyze' => false, // true = Hinweise auf fehlende/unbekannte Felder
         // Reihenfolge und Breite: "feld: klassen", "-" = neue Zeile, tab:Titel … tab-end, accordion:Titel … accordion-end
         'fields_visual' => '
-            str_tag: col-md-12
+            str_slot_type_name: col-md-6
+            str_slot_type_color: col-md-3
         ',
         // 'fields' => [], // Alternative zu fields_visual (nicht beides verwenden)
         'conditions' => [], // 'button_edit' / 'button_saveas' => fn($row) => true
@@ -87,8 +84,9 @@ $editor->add_table_config([
             'sortable' => true,
         ],
 
-        'str_tag' => [
-            'label'          => $labels['str_tag'] ?? 'Tag',
+        'str_slot_type_name' => [
+            'label'          => $labels['str_slot_type_name'] ?? 'Slot-Typ',
+            'class'          => '', // Bootstrap-Klassen (fields_visual hat Vorrang)
             'sortable'       => true,
             'searchable'     => true,
             'is_form_hidden' => false,
@@ -111,5 +109,31 @@ $editor->add_table_config([
                 'maxlength' => 255,
             ],
         ],
+
+        'str_slot_type_color' => [
+            'label'          => $labels['str_slot_type_color'] ?? 'Farbe',
+            'class'          => '', // Bootstrap-Klassen (fields_visual hat Vorrang)
+            'sortable'       => false,
+            'searchable'     => false,
+            'is_form_hidden' => false,
+            'formatter'      => [
+                'list' => '', // actions, fky, label_by_value, html, button
+                'save' => '', // array_to_list, link, media_id_to_image_url, email_with_name
+            ],
+            'default'        => '', // Vorgabe für neue Datensätze (Wert oder fn($value, $data))
+            // 'value_force'  => fn($value, $data) => $value, // Wert bei jedem Speichern setzen
+            // 'before_render' => fn($field, $record) => $field, // Feld pro Datensatz anpassen
+            'data'           => [], // data-*-Attribute am Feld
+            'acf' => [
+                'type' => 'color_picker',
+                'instructions' => '', // Hinweis unter dem Feld
+                'instruction_placement' => '', // '' = unter dem Feld, 'label' = unter der Beschriftung
+                'required' => 0,
+                'readonly' => 0,
+                'placeholder' => '',
+                'default_value' => '',
+            ],
+        ],
+
     ],
 ]);
