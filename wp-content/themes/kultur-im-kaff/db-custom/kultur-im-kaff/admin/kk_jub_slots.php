@@ -33,7 +33,7 @@ $editor->add_table_config([
             'button_add' => 'Neuer Datensatz',
         ],
         'fields'                => ['str_slot_name'], // Spalten der Liste
-        'fields_iframe'         => ['str_slot_name'], // Anzeige in der Liste links (geteilte Ansicht)
+        'fields_iframe'         => ['str_slot_name', 'dtm_slot_date'], // Anzeige in der Liste links (geteilte Ansicht)
         'orderby_default'       => 'str_slot_name',
         'order_default'         => 'asc',
         'condition'             => '', // zusätzliche SQL-Bedingung, z. B. "ysn_active = 1"
@@ -67,13 +67,14 @@ $editor->add_table_config([
         // Reihenfolge und Breite: "feld: klassen", "-" = neue Zeile, tab:Titel … tab-end, accordion:Titel … accordion-end
         'fields_visual' => '
             str_slot_name: col-md-6
+            fky_slot_type: col-md-6
             dtm_slot_date: col-md-3
             dtm_slot_from: col-md-3
             dtm_slot_to: col-md-3
-            fky_slot_type: col-md-6
+            
             fky_event_id: col-md-6
             ysn_slot_booked: col-md-3
-            int_slot_state: col-md-3
+            int_slot_state_off: col-md-3
             str_event_title: col-md-6
             txt_event_description: col-md-12
             str_event_club: col-md-6
@@ -146,6 +147,7 @@ $editor->add_table_config([
             'data'           => [], // data-*-Attribute am Feld
             'acf' => [
                 'type' => 'date_picker',
+                'display_format' => 'j.n.Y', // Anzeige in Liste und Formular, z. B. 17.6.2027
                 'instructions' => '', // Hinweis unter dem Feld
                 'instruction_placement' => '', // '' = unter dem Feld, 'label' = unter der Beschriftung
                 'required' => 0,
@@ -278,26 +280,32 @@ $editor->add_table_config([
         'ysn_slot_booked' => [
             'label'          => $labels['ysn_slot_booked'] ?? 'Buchungsstatus',
             'class'          => '', // Bootstrap-Klassen (fields_visual hat Vorrang)
-            'sortable'       => false,
+            'sortable'       => true,
             'searchable'     => false,
             'is_form_hidden' => false,
             'formatter'      => [
-                'list' => '', // actions, fky, label_by_value, html, button
+                'list' => 'label_by_value', // actions, fky, label_by_value, html, button
                 'save' => '', // array_to_list, link, media_id_to_image_url, email_with_name
             ],
-            'default'        => '', // Vorgabe für neue Datensätze (Wert oder fn($value, $data))
+            'default'        => 0, // Vorgabe für neue Datensätze (Wert oder fn($value, $data))
             // 'value_force'  => fn($value, $data) => $value, // Wert bei jedem Speichern setzen
             // 'before_render' => fn($field, $record) => $field, // Feld pro Datensatz anpassen
             'data'           => [], // data-*-Attribute am Feld
             'acf' => [
-                'type' => 'true_false',
+                // Drei Zustände (kein Schalter: der würde 2 beim Speichern auf 1 setzen), wie im Kalender
+                'type' => 'radio',
+                'choices' => [
+                    0 => 'frei',
+                    1 => 'reserviert',
+                    2 => 'gebucht',
+                ],
+                'layout' => 'vertical',
                 'instructions' => '', // Hinweis unter dem Feld
                 'instruction_placement' => '', // '' = unter dem Feld, 'label' = unter der Beschriftung
                 'required' => 0,
                 'readonly' => 0,
                 'placeholder' => '',
-                'default_value' => '',
-                'ui' => 1, // Schalter statt Checkbox
+                'default_value' => 0,
             ],
         ],
 

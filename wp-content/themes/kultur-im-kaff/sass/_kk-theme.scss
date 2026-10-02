@@ -14,6 +14,10 @@
   --kk-violet:#5B3E7E;
   --kk-text-on-accent:var(--kk-ink);          /* Text auf Akzentfarbe (--kk-accent-color) */
   --kk-text-on-black:var(--kk-accent-color);  /* Akzent-Text auf Dunkel (--kk-ink) */
+  --kk-blue:#562BFF;                          /* Blau (= Akzent "blau"), unabhängig vom Farbschema */
+  --kk-blue-dark:#4320D6;                     /* Blau Hover */
+  --kk-badge-bg:var(--kk-blue);               /* Badge Startseite: immer Blau */
+  --kk-badge-text:var(--kk-white);
   --kk-rule:rgba(20,16,26,.35);
   --kk-ink-70:rgba(20,16,26,.7);
   --kk-ink-75:rgba(20,16,26,.75);
@@ -444,7 +448,7 @@ a.kk-agenda-item:hover .kk-agenda-date{text-decoration:underline;text-underline-
 .kk-badge{
   position:absolute; top:-150px; right:4%;
   width:212px; height:212px; border-radius:50%;
-  background:var(--kk-accent-color); color:var(--kk-text-on-accent);
+  background:var(--kk-badge-bg); color:var(--kk-badge-text);
   display:none; flex-direction:column;
   align-items:center; justify-content:center; text-align:center;
   transform:rotate(-9deg);
@@ -452,7 +456,7 @@ a.kk-agenda-item:hover .kk-agenda-date{text-decoration:underline;text-underline-
   transition:transform .25s cubic-bezier(.34,1.56,.64,1);
   z-index:2;
 }
-.kk-badge:hover{transform:rotate(-3deg) scale(1.06);color:var(--kk-text-on-accent)}
+.kk-badge:hover{transform:rotate(-3deg) scale(1.06);color:var(--kk-badge-text)}
 .kk-badge-kicker{font-weight:600;font-size:var(--kk-fs-16);letter-spacing:var(--kk-ls-wider);text-transform:uppercase}
 .kk-badge-figure{font-weight:800;font-size:38px;line-height:.9;letter-spacing:var(--kk-ls-tight);margin-top:.25rem}
 .kk-badge-text{font-weight:800;font-size:var(--kk-fs-18);line-height:1.05;letter-spacing:var(--kk-ls-tight);padding:0 22px}

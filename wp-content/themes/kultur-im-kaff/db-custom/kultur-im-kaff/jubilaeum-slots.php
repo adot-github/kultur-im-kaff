@@ -8,8 +8,13 @@
 
 defined( 'ABSPATH' ) || exit;
 
-const KK_JUB_DATE_FROM = '2027-06-04';
-const KK_JUB_DATE_TO   = '2027-08-28';
+// Zeitraum der Slots (Do/Fr, siehe sql/kk_jub_slots_seed.sql): Navigation im Kalender und Buchungsprüfung
+const KK_JUB_DATE_FROM = '2027-06-17';
+const KK_JUB_DATE_TO   = '2027-08-27';
+
+// Open Stage (wp_kk_jub_slot_types.id): Dauer des Beitrags wählbar, sie bestimmt beim Speichern die Endzeit
+const KK_JUB_TYPE_OPEN_STAGE = 1;
+const KK_JUB_DURATIONS       = array( 30, 45, 60, 75, 90 ); // Minuten
 
 /**
  * Alle Slots im Jubiläumszeitraum als Termine für bs-calendar.
@@ -64,6 +69,8 @@ function kk_jub_slot_to_appointment( $row ) {
         'kkName'   => trim( (string) ( $row['str_slot_name'] ?? '' ) ),
         'kkState'  => $state,
         'kkBooked' => $state !== 0,
+        // Open Stage: Formular ohne Zeit im Titel, dafür mit "Dauer des Beitrags"
+        'kkOpenStage' => (int) ( $row['fky_slot_type'] ?? 0 ) === KK_JUB_TYPE_OPEN_STAGE,
     );
 }
 
@@ -88,7 +95,7 @@ function kk_jub_ajax_register() {
     }
 
     $slot_id = absint( $_POST['slot_id'] ?? 0 );
-    $slot    = $slot_id ? $wpdb->get_row( $wpdb->prepare( "SELECT id, dtm_slot_date, ysn_slot_booked FROM {$table} WHERE id = %d", $slot_id ), ARRAY_A ) : null;
+    $slot    = $slot_id ? $wpdb->get_row( $wpdb->prepare( "SELECT id, dtm_slot_date, dtm_slot_from, fky_slot_type, ysn_slot_booked FROM {$table} WHERE id = %d", $slot_id ), ARRAY_A ) : null;
     $date    = $slot ? substr( (string) $slot['dtm_slot_date'], 0, 10 ) : '';
 
     if ( ! $slot || $date < KK_JUB_DATE_FROM || $date > KK_JUB_DATE_TO || $date < current_time( 'Y-m-d' ) ) {
@@ -135,6 +142,17 @@ function kk_jub_ajax_register() {
         $errors[] = 'Bitte gib eine gültige Webadresse an (mit https://).';
     }
 
+    // Open Stage: gewählte Dauer bestimmt die Endzeit (überschreibt dtm_slot_to)
+    $duration = 0;
+    if ( (int) $slot['fky_slot_type'] === KK_JUB_TYPE_OPEN_STAGE ) {
+        $duration = absint( $_POST['duration'] ?? 0 );
+        if ( ! in_array( $duration, KK_JUB_DURATIONS, true ) ) {
+            $errors[] = 'Bitte wähle die Dauer des Beitrags.';
+        } else {
+            $data['dtm_slot_to'] = gmdate( 'H:i:s', strtotime( '1970-01-01 ' . $slot['dtm_slot_from'] . ' UTC' ) + $duration * 60 );
+        }
+    }
+
     if ( $errors ) {
         wp_send_json_error( array( 'message' => implode( ' ', $errors ) ), 422 );
     }
@@ -172,7 +190,7 @@ function kk_jub_ajax_register() {
         ARRAY_A
     );
 
-    kk_jub_send_registration_mail( $row, $data );
+    kk_jub_send_registration_mail( $row, $data, $duration );
 
     wp_send_json_success(
         array(
@@ -190,7 +208,7 @@ function kk_jub_ajax_register() {
 const KK_JUB_MAIL_TO  = 'e.notter@adot.ch';
 const KK_JUB_MAIL_BCC = 'eugen.notter@fhnw.ch';
 
-function kk_jub_send_registration_mail( array $slot, array $data ) {
+function kk_jub_send_registration_mail( array $slot, array $data, $duration = 0 ) {
     $date = strtotime( substr( (string) $slot['dtm_slot_date'], 0, 10 ) );
     $when = date_i18n( 'l, j. F Y', $date ) . ', ' . substr( $slot['dtm_slot_from'], 0, 5 ) . '–' . substr( $slot['dtm_slot_to'], 0, 5 ) . ' Uhr';
     $type = trim( (string) ( $slot['str_slot_type_name'] ?? '' ) );
@@ -199,6 +217,7 @@ function kk_jub_send_registration_mail( array $slot, array $data ) {
     $rows = array(
         'Slot'                                  => esc_html( $type !== '' ? $type : (string) $slot['str_slot_name'] ),
         'Datum/Zeit'                            => esc_html( $when ),
+        'Dauer des Beitrags'                    => $duration ? $duration . ' Minuten' : null, // nur Open Stage
         'Titel des Beitrages'                   => esc_html( $data['str_event_title'] ),
         'Beschreibung des Beitrages'            => nl2br( esc_html( $data['txt_event_description'] ) ),
         'Verein/Gruppe/Künstler:in'             => esc_html( $data['str_event_club'] ),
@@ -214,6 +233,7 @@ function kk_jub_send_registration_mail( array $slot, array $data ) {
     $th_style = 'padding:10px 16px 10px 0;border-bottom:1px solid #e3def0;font-weight:600;color:#5B3E7E;white-space:nowrap;width:1%;';
     $td_style = 'padding:10px 0;border-bottom:1px solid #e3def0;color:#160234;';
 
+    $rows  = array_filter( $rows, fn( $value ) => $value !== null );
     $table = '';
     foreach ( $rows as $label => $value ) {
         $label  = esc_html( $label );

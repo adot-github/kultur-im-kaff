@@ -64,6 +64,18 @@ $kk_jub_config = array(
               <label for="jub-title">Titel des Beitrages *</label>
             </div>
           </div>
+          <!-- Nur bei Open Stage (ersetzt die Zeit im Titel): bestimmt beim Speichern die Endzeit -->
+          <div class="col-12 col-md-6" data-jub-duration-field hidden>
+            <div class="kk-field always">
+              <select id="jub-duration" name="duration" disabled required>
+                <option value="">Bitte wählen</option>
+                <?php foreach ( KK_JUB_DURATIONS as $kk_jub_min ) : ?>
+                  <option value="<?php echo (int) $kk_jub_min; ?>"><?php echo (int) $kk_jub_min; ?> Minuten</option>
+                <?php endforeach; ?>
+              </select>
+              <label for="jub-duration">Dauer des Beitrags *</label>
+            </div>
+          </div>
           <div class="col-12">
             <div class="kk-field">
               <textarea id="jub-description" name="description" rows="4" required></textarea>
@@ -146,8 +158,8 @@ $kk_jub_config = array(
   .kk-jub-app-title { flex: 1 1 auto; min-width: 0; white-space: normal; overflow-wrap: anywhere; }
   .kk-jub-app-actions { margin-top: 3px; }
   .kk-jub-app-time { flex: none; opacity: .8; }
-  .kk-jub-book { flex: none; border: 0; border-radius: 3px; padding: 1px 6px; background: var(--kk-ink); color: var(--kk-text-on-black); font-size: 10px; font-weight: 700; line-height: 1.4; letter-spacing: .03em; cursor: pointer; }
-  .kk-jub-book:hover { background: var(--kk-accent-color); color: var(--kk-text-on-accent); }
+  .kk-jub-book { flex: none; border: 0; border-radius: 999px; padding: 2px 10px; background: var(--kk-blue, #562BFF); color: var(--kk-white, #fff); font-size: 10px; font-weight: 700; line-height: 1.4; letter-spacing: .03em; cursor: pointer; }
+  .kk-jub-book:hover { background: var(--kk-blue-dark, #4320D6); color: var(--kk-white, #fff); }
 
   /* Listen-Stil der Seite (.kk-pagehead ul: Gedankenstrich, Einzug) nicht auf die Listen von bs-calendar anwenden */
   #kkJubCalendar ul,
@@ -163,6 +175,34 @@ $kk_jub_config = array(
   #kkJubCalendar.kk-jub-at-min [data-prev],
   #kkJubCalendar.kk-jub-at-max [data-next] { opacity: .25; cursor: default; }
   #kkJubCalendar [data-appointment] { cursor: pointer; }
+
+  /* Wochenansicht: nur Donnerstag und Freitag (Slot-Tage). Wochentag-Nummern von bs-calendar: 0 = So … 6 = Sa.
+     Kopfzeile: Spalten mit [data-all-day=N]; Raster: .wc-day-week-view[data-week-day=N].
+     Montag wird nur auf Breite 0 zusammengeklappt, weil in seiner Spalte die Zeitbeschriftung (18:00 …) steckt. */
+  #kkJubCalendar div:has(> .wc-week-view) > div:first-child > div:has(> [data-all-day="1"]),
+  #kkJubCalendar div:has(> .wc-week-view) > div:first-child > div:has(> [data-all-day="2"]),
+  #kkJubCalendar div:has(> .wc-week-view) > div:first-child > div:has(> [data-all-day="3"]),
+  #kkJubCalendar div:has(> .wc-week-view) > div:first-child > div:has(> [data-all-day="6"]),
+  #kkJubCalendar div:has(> .wc-week-view) > div:first-child > div:has(> [data-all-day="0"]),
+  #kkJubCalendar .wc-week-view > .wc-day-week-view[data-week-day="2"],
+  #kkJubCalendar .wc-week-view > .wc-day-week-view[data-week-day="3"],
+  #kkJubCalendar .wc-week-view > .wc-day-week-view[data-week-day="6"],
+  #kkJubCalendar .wc-week-view > .wc-day-week-view[data-week-day="0"] { display: none !important; }
+  #kkJubCalendar .wc-week-view > .wc-day-week-view[data-week-day="1"] { flex: 0 0 0 !important; width: 0; min-width: 0; border: 0 !important; }
+  #kkJubCalendar .wc-week-view > .wc-day-week-view[data-week-day="4"] { border-left: 1px solid var(--bs-border-color); }
+
+  /* Monatsansicht ebenso: Tabellenzeile = Wochennummer, Mo, Di, Mi, Do, Fr, Sa, So (Woche beginnt am Montag) */
+  #kkJubCalendar tr.wc-calendar-content > td:nth-child(2),
+  #kkJubCalendar tr.wc-calendar-content > td:nth-child(3),
+  #kkJubCalendar tr.wc-calendar-content > td:nth-child(4),
+  #kkJubCalendar tr.wc-calendar-content > td:nth-child(7),
+  #kkJubCalendar tr.wc-calendar-content > td:nth-child(8) { display: none; }
+  #kkJubCalendar tr.wc-calendar-content > td:nth-child(6) { border-right: var(--bs-border-width) solid var(--bs-border-color); }
+  /* bs-calendar setzt die Zellhöhe per JS = Zellbreite (quadratisch). Mit 2 statt 7 Spalten würden die Zellen
+     so hoch, dass nur eine Woche Platz hat – feste Höhe für Datum + 2 Slots */
+  #kkJubCalendar tr.wc-calendar-content > td { height: 120px !important; }
+  /* … und gibt dem Monatsbereich per JS eine feste Höhe, die die Tabelle abschneidet: mit dem Inhalt wachsen lassen */
+  #kkJubCalendar .wc-calendar-view-container:has(> table tr.wc-calendar-content) { height: auto !important; }
 
   .kk-jub-modal .modal-content { background: var(--kk-bg-color); color: var(--kk-ink); border: 0; border-radius: 0; }
   .kk-jub-modal .modal-header,
@@ -220,8 +260,8 @@ document.addEventListener('DOMContentLoaded', function () {
     locale: 'de-CH',
     startWeekOnSunday: false,
     startDate: MIN,
-    startView: 'week',
-    views: ['day', 'week', 'month', 'agenda'],
+    startView: 'month',
+    views: ['week', 'month', 'agenda'],
     showAddButton: false,
     showAbout: false,
     showTasks: false,
@@ -307,6 +347,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var successBox = modalEl.querySelector('[data-jub-success]');
   var bookedBox = modalEl.querySelector('[data-jub-booked]');
   var submitBtn = modalEl.querySelector('[data-jub-submit]');
+  var durationField = modalEl.querySelector('[data-jub-duration-field]');
   var fmtDate = new Intl.DateTimeFormat('de-CH', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
 
   function showError(msg) {
@@ -317,10 +358,14 @@ document.addEventListener('DOMContentLoaded', function () {
   function openSlot(s) {
     var date = new Date(s.start.slice(0, 10) + 'T00:00:00');
     modalEl.querySelector('[data-jub-type]').textContent = s.kkType || 'Slot';
-    modalEl.querySelector('[data-jub-when]').textContent =
-      fmtDate.format(date) + ', ' + s.start.slice(11, 16) + '–' + s.end.slice(11, 16) + ' Uhr';
+    // Open Stage: nur das Datum im Titel, die Zeit ergibt sich aus der gewählten Dauer
+    modalEl.querySelector('[data-jub-when]').textContent = s.kkOpenStage
+      ? fmtDate.format(date)
+      : fmtDate.format(date) + ', ' + s.start.slice(11, 16) + '–' + s.end.slice(11, 16) + ' Uhr';
 
     form.reset();
+    durationField.hidden = !s.kkOpenStage;
+    durationField.querySelector('select').disabled = !s.kkOpenStage; // ausgeblendet: nicht senden, nicht prüfen
     form.querySelectorAll('.kk-field.filled').forEach(function (f) { f.classList.remove('filled'); });
     form.elements.slot_id.value = s.id;
     showError('');
