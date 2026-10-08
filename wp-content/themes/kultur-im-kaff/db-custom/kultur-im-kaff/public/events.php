@@ -437,6 +437,15 @@ echo '<main class="container-fluid p-0 m-0 px-sm-3" id="programm" data-archive>'
   .kk-player .kk-controls {
     z-index: 3;
   }
+  /* Geladenes Video: eigene Leiste (Balken ohne Funktion, Zeit/Format-Text) ausblenden,
+     damit die Steuerleiste des Videos (Play/Pause, Zeit, Ton, Vollbild) bedienbar ist */
+  .kk-player.is-video-loaded .kk-controls {
+    display: none;
+  }
+  /* Während der Wiedergabe kein Knopf mitten im Bild – Pause über die Leiste unten */
+  .kk-player .kk-play.playing {
+    display: none;
+  }
 </style>
 
 <script>
@@ -718,6 +727,16 @@ echo '<main class="container-fluid p-0 m-0 px-sm-3" id="programm" data-archive>'
   }
 
   document.addEventListener("DOMContentLoaded", function () {
+    // Runder Play-Knopf folgt dem Video: weg beim Abspielen, wieder da bei Pause/Ende
+    document.querySelectorAll("[data-player]").forEach(function (player) {
+      var video = player.querySelector("[data-video-file]");
+      var play = player.querySelector("[data-play]");
+      if (!video || !play) return;
+      video.addEventListener("play", function () { play.classList.add("playing"); });
+      video.addEventListener("pause", function () { play.classList.remove("playing"); });
+      video.addEventListener("ended", function () { play.classList.remove("playing"); });
+    });
+
     document.querySelectorAll("[data-video]").forEach(function (button) {
       button.addEventListener("click", function () {
         var overlay = document.querySelector("[data-overlay=\"video\"]");

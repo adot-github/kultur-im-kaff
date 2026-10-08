@@ -19,5 +19,6 @@
 
             </div>
         </div>
+        <?php do_action( 'kk_footer_bottom' ); // z. B. Demo Bildfarbe (inc/demo-bildfarbe.php) ?>
     </div>
 </footer>

@@ -23,6 +23,7 @@
 require_once ("livecanvas/configuration.php");
 require_once get_stylesheet_directory() . '/inc/site-design-renderer.php';
 require_once get_stylesheet_directory() . '/inc/color-skins.php';
+require_once get_stylesheet_directory() . '/inc/demo-bildfarbe.php'; // DEMO Bilder sw/farbig – zum Entfernen Zeile + Datei löschen
 
 // DE-ENQUEUE PARENT THEME BOOTSTRAP JS BUNDLE
 add_action( 'wp_print_scripts', function(){
