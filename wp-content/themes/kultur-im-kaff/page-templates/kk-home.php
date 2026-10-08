@@ -48,12 +48,13 @@ defined( 'ABSPATH' ) || exit;
                             <div class="kk-lead mb-0"><?php the_content(); ?></div>
                         </div>
 
-                        <div class="col-12 d-md-none">
+                        <?php // Mobile: Badge unter den Buttons (order-last); ab 768px ausgeblendet ?>
+                        <div class="col-12 d-md-none order-last">
                             <?php $kk_badge( 'kk-badge--inline' ); ?>
                         </div>
 
                         <div class="col-12 col-md-6 col-lg-auto d-flex flex-wrap flex-lg-nowrap gap-2 justify-content-md-end">
-                            <a class="kk-btn" href="#programm">Programm</a>
+                            <a class="kk-btn" href="#programm">Aktuelles Programm</a>
                             <a class="kk-btn kk-btn-outline" href="/news/">News</a>
                             <a class="kk-btn kk-btn-outline" href="/mitglied-werden/">Mitglied werden</a>
                         </div>
