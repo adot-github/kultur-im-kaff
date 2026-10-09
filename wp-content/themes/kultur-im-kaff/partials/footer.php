@@ -12,6 +12,7 @@
             <div class="col-12 col-lg-5">
                 <h3>Kontakt</h3>
                 <p class="kk-text mt-2 mb-2">
+                    Kulturkreis Küttigen-Rombach<br>
                     Christine Kessi<br>
                     Galgehübel 7<br>
                     5022 Rombach<br>

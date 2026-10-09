@@ -291,7 +291,7 @@ h1,h2,h3,h4,h5,h6,p,li,dd,blockquote,figcaption,
 
 /* ---------- Programm- und Archivzeile ---------- */
 .kk-row{border-bottom:2px solid var(--kk-rule);scroll-margin-top:5rem}
-.kk-rail{background:var(--kk-accent-color);color:var(--kk-text-on-accent);padding:var(--kk-pad-top) var(--kk-pad-x) var(--kk-pad-bottom)}
+.kk-rail{background:var(--kk-accent-color);color:var(--kk-text-on-accent);padding:var(--kk-pad-top) calc(var(--kk-pad-x) - 4px) var(--kk-pad-bottom)}
 .kk-rail-date{font-weight:800;font-size:var(--kk-fs-20);line-height:1.1;white-space:pre-line}
 .kk-rail-time{font-weight:600;font-size:var(--kk-fs-16);text-transform:uppercase;margin-top:.25rem}
 .kk-rail-venue{margin-top:1rem;font-size:var(--kk-fs-16);line-height:1.35}
@@ -308,7 +308,7 @@ h1,h2,h3,h4,h5,h6,p,li,dd,blockquote,figcaption,
 }
 [data-archive-count]{padding-left:calc(var(--kk-pad-x) / 2);padding-right:calc(var(--kk-pad-x) / 2)}
 @media (min-width:992px){
-  .kk-rail{padding:var(--kk-pad-top-lg) var(--kk-pad-x-lg) var(--kk-pad-bottom-lg)}
+  .kk-rail{padding:var(--kk-pad-top-lg) calc(var(--kk-pad-x-lg) - 3px) var(--kk-pad-bottom-lg)}
   .kk-body{padding:var(--kk-pad-top-lg) var(--kk-pad-x-lg) var(--kk-pad-bottom-lg)}
   .kk-media{padding:var(--kk-pad-top-lg) var(--kk-pad-x-lg) var(--kk-pad-bottom-lg)}
   .kk-media-right{padding-right:var(--kk-pad-x-lg)}
