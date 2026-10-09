@@ -224,7 +224,7 @@ $editor->add_table_config([
                 'placeholder' => '',
                 'default_value' => '',
                 'file_type' => 'image', // 'image' oder 'file'
-                'subfolder' => '/vorstand/', // Ordner unter wp-content/uploads
+                'subfolder' => kk_uploads_subfolder( 'vorstand' ), // Ordner unter wp-content/uploads
                 'extensions' => 'jpg,jpeg,png,webp,gif,svg',
                 'image_width' => 200,
                 'image_height' => 200,

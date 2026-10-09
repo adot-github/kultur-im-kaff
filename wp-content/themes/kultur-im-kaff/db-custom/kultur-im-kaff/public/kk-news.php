@@ -19,7 +19,7 @@ $normalize_text = static function ( $value ) {
     return trim( (string) ( $value ?? '' ) );
 };
 
-$news_image_base = trailingslashit( wp_upload_dir()['baseurl'] ) . 'news/';
+$news_image_base = kk_uploads_url( 'news/' );
 $resolve_image = static function ( $value ) use ( $news_image_base ) {
     $value = trim( (string) ( $value ?? '' ) );
     if ( $value === '' ) {
@@ -77,7 +77,7 @@ $normalize_media_url = static function ( $value ) {
         return home_url( '/' ) . 'wp-content/' . $relative;
     }
 
-    return home_url( '/wp-content/uploads/news/' ) . ltrim( $relative, '/' );
+    return kk_uploads_url( 'news/' ) . ltrim( $relative, '/' );
 };
 
 $news_items = array();

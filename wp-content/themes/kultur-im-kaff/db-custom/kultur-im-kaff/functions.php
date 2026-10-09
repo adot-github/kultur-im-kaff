@@ -1,4 +1,7 @@
 <?php
+// Bildordner (uploads/kultur-im-kaff/…): Pfad-Helfer und einmaliger Umzug – vor allem anderen
+require_once __DIR__ . "/kk-uploads.php";
+
 // Auch im Admin laden: die Slot-Anmeldung läuft über admin-ajax.php
 require_once __DIR__ . "/jubilaeum-slots.php";
 

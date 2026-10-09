@@ -49,7 +49,7 @@ $normalize_text = static function ( $value ) {
     return trim( (string) ( $value ?? '' ) );
 };
 
-$location_image_base = trailingslashit( wp_upload_dir()['baseurl'] ) . 'spielorte/';
+$location_image_base = kk_uploads_url( 'spielorte/' );
 $resolve_image = static function ( $value ) use ( $location_image_base ) {
     $value = trim( (string) ( $value ?? '' ) );
     if ( $value === '' ) {

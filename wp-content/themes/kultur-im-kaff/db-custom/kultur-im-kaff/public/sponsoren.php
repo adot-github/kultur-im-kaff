@@ -9,8 +9,8 @@ $sponsors = $wpdb->get_results(
 );
 
 $upload_dir     = wp_upload_dir();
-$logo_base_url  = trailingslashit( $upload_dir['baseurl'] ) . 'sponsoren/';
-$logo_base_path = trailingslashit( $upload_dir['basedir'] ) . 'sponsoren/';
+$logo_base_url  = kk_uploads_url( 'sponsoren/' );
+$logo_base_path = kk_uploads_dir( 'sponsoren/' );
 
 $resolve_logo = static function ( $value ) use ( $logo_base_url, $logo_base_path ) {
     $value = trim( (string) ( $value ?? '' ) );

@@ -165,7 +165,7 @@ $editor->add_table_config([
                 'placeholder' => '',
                 'default_value' => '',
                 'file_type' => 'image', // 'image' oder 'file'
-                'subfolder' => '/sponsoren/', // Ordner unter wp-content/uploads
+                'subfolder' => kk_uploads_subfolder( 'sponsoren' ), // Ordner unter wp-content/uploads
                 'extensions' => 'jpg,jpeg,png,webp,gif,svg',
                 'image_width' => 300,
                 'image_height' => 300,

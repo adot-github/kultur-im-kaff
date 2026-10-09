@@ -20,4 +20,14 @@
     require_once __DIR__ . '/kk_jub_slot_types.php';
     require_once __DIR__ . '/kk_persons.php';
     require_once __DIR__ . '/kk_sponsoren.php';
+
+    // Bildverwaltung (Ordner und Dateien unter wp-content/uploads) im Menü "Kultur im Kaff"
+    if ( function_exists( 'acdb_media_manager' ) ) {
+        acdb_media_manager( array(
+            'slug'   => 'kk_bilder',
+            'parent' => 'acdb_kk_events',
+            'label'  => '– Bilder',
+            'root'   => KK_UPLOADS_FOLDER, // nur uploads/kultur-im-kaff/ (siehe kk-uploads.php)
+        ) );
+    }
 })();

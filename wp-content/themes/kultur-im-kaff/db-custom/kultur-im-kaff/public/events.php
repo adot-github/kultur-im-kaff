@@ -90,7 +90,7 @@ $format_time = function ( $time ) {
     return date_i18n( 'H:i', $stamp ) . ' Uhr';
 };
 
-$base_image_url = trailingslashit( wp_upload_dir()['baseurl'] ) . 'events/';
+$base_image_url = kk_uploads_url( 'events/' );
 $normalize_media_url = static function ( $value ) {
     $value = trim( (string) $value );
     if ( $value === '' ) {
@@ -131,7 +131,7 @@ $normalize_media_url = static function ( $value ) {
         return home_url( '/' ) . 'wp-content/' . $relative;
     }
 
-    return home_url( '/wp-content/uploads/events/' ) . ltrim( $relative, '/' );
+    return kk_uploads_url( 'events/' ) . ltrim( $relative, '/' );
 };
 
 $items = [];

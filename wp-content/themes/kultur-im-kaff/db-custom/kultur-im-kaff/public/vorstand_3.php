@@ -28,8 +28,8 @@ foreach ( $rows as $person ) {
     if ( $image !== '' ) {
         if ( ! preg_match( '#^(https?:)?//#', $image ) && ! preg_match( '#^/#', $image ) ) {
             $upload_dir = wp_upload_dir();
-            $base_url   = trailingslashit( $upload_dir['baseurl'] );
-            $base_path  = trailingslashit( $upload_dir['basedir'] );
+            $base_url   = kk_uploads_url();
+            $base_path  = kk_uploads_dir();
             $file_name  = basename( $image );
             $candidates = array(
                 'vorstand/' . $file_name,
@@ -51,7 +51,7 @@ foreach ( $rows as $person ) {
         }
     } else {
         $upload_dir = wp_upload_dir();
-        $image = trailingslashit( $upload_dir['baseurl'] ) . 'vorstand/default.jpg';
+        $image = kk_uploads_url( 'vorstand/default.jpg' );
     }
 
     $role_html = ( $role !== '' ) ? '<div class="kk-card-role">' . esc_html( $role ) . '</div>' : '';

@@ -27,8 +27,8 @@ if ( empty( $rows ) ) {
         if ( $image !== '' ) {
             if ( ! preg_match( '#^(https?:)?//#', $image ) && ! preg_match( '#^/#', $image ) ) {
                 $upload_dir = wp_upload_dir();
-                $base_url   = trailingslashit( $upload_dir['baseurl'] );
-                $base_path  = trailingslashit( $upload_dir['basedir'] );
+                $base_url   = kk_uploads_url();
+                $base_path  = kk_uploads_dir();
                 $file_name  = basename( $image );
                 $candidates = array(
                     'vorstand/' . $file_name,
@@ -50,7 +50,7 @@ if ( empty( $rows ) ) {
             }
         } else {
             $upload_dir = wp_upload_dir();
-            $image = trailingslashit( $upload_dir['baseurl'] ) . 'vorstand/default.jpg';
+            $image = kk_uploads_url( 'vorstand/default.jpg' );
         }
         ?>
         <div class="col-6 col-md-4 col-lg-3 d-flex">
