@@ -183,7 +183,8 @@ h1,h2,h3,h4,h5,h6{font-weight:600}
 h1,h2,h3,h4,h5,h6,p,li,dd,blockquote,figcaption,
 .kk-hero-title,.kk-h1,.kk-h2,.kk-h3,.kk-display,
 .kk-lead,.kk-text,.kk-text-wide,.kk-credits,.kk-quote,.kk-list,.kk-artist,.kk-caption,.kk-card-fact{
-  -webkit-hyphens:auto;hyphens:auto;hyphenate-limit-chars:6 3 3;overflow-wrap:break-word
+  -webkit-hyphens:auto;hyphens:auto;hyphenate-limit-chars:6 3 3;overflow-wrap:break-word;
+  -webkit-hyphenate-limit-before:3;-webkit-hyphenate-limit-after:3  /* Safari kennt hyphenate-limit-chars nicht */
 }
 /* Bedienelemente nie trennen */
 .kk-navlinks,.kk-navlinks li,.kk-btn,.kk-chip,.kk-tag,.kk-sticker,.kk-venue-badge,.kk-eyebrow,.kk-label{-webkit-hyphens:manual;hyphens:manual}
@@ -191,12 +192,13 @@ h1,h2,h3,h4,h5,h6,p,li,dd,blockquote,figcaption,
 /* ---------- Typo-Bausteine ---------- */
 .kk-display{font-weight:800;letter-spacing:var(--kk-ls-tighter);line-height:.95}
 .kk-hero-title{font-weight:800;font-size:var(--kk-fs-hero);line-height:.9;letter-spacing:var(--kk-ls-tighter);margin:0}
-.kk-h1{font-weight:800;font-size:var(--kk-fs-h1);line-height:.92;letter-spacing:var(--kk-ls-tighter);margin:0}
-.kk-h2{font-weight:800;font-size:var(--kk-fs-h2);line-height:1.02;letter-spacing:var(--kk-ls-tight);text-wrap:balance;margin:0}
+.kk-h1{font-weight:800;font-size:var(--kk-fs-h1);line-height:1;letter-spacing:var(--kk-ls-tighter);margin:0}
+.kk-h2{font-weight:800;font-size:var(--kk-fs-h2);line-height:1;letter-spacing:var(--kk-ls-tight);text-wrap:balance;margin:0}
 .kk-h2-spaced{margin-top:var(--kk-space-title)}
-.kk-h3{font-weight:800;font-size:var(--kk-fs-h3);line-height:1.06;letter-spacing:0;margin:0}
+.kk-h3{font-weight:800;font-size:var(--kk-fs-h3);line-height:1;letter-spacing:0;margin:0}
 .kk-lead{font-size:var(--kk-fs-lead);line-height:1.45;max-width:52ch}
-.kk-text{font-size:var(--kk-fs-16);line-height:1.55;max-width:60ch;text-wrap:pretty}
+/* ohne text-wrap:pretty – damit trennt Safari (iOS) nicht; .kk-lead hat es nicht und wird getrennt */
+.kk-text{font-size:var(--kk-fs-16);line-height:1.55;max-width:60ch}
 .kk-text-narrow{max-width:44ch}
 .kk-text-wide{max-width:62ch;font-size:var(--kk-fs-18);line-height:1.6}
 .kk-credits{font-size:var(--kk-fs-16);line-height:1.5;max-width:60ch;color:var(--kk-ink-75)}
@@ -290,7 +292,7 @@ h1,h2,h3,h4,h5,h6,p,li,dd,blockquote,figcaption,
 /* ---------- Programm- und Archivzeile ---------- */
 .kk-row{border-bottom:2px solid var(--kk-rule);scroll-margin-top:5rem}
 .kk-rail{background:var(--kk-accent-color);color:var(--kk-text-on-accent);padding:var(--kk-pad-top) var(--kk-pad-x) var(--kk-pad-bottom)}
-.kk-rail-date{font-weight:800;font-size:var(--kk-fs-20);line-height:1.06;white-space:pre-line}
+.kk-rail-date{font-weight:800;font-size:var(--kk-fs-20);line-height:1.1;white-space:pre-line}
 .kk-rail-time{font-weight:600;font-size:var(--kk-fs-16);text-transform:uppercase;margin-top:.25rem}
 .kk-rail-venue{margin-top:1rem;font-size:var(--kk-fs-16);line-height:1.35}
 .kk-rail-venue a{color:inherit;text-decoration:underline;text-underline-offset:.15em;text-decoration-thickness:1px}
